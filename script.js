@@ -1,4 +1,4 @@
-var secsLeft = document.querySelector("#secs");
+var secsElement = document.querySelector("#secs");
 var startButton = document.querySelector("#start-button");
 var messageElement = document.querySelector("h1");
 var mainElement = document.querySelector("#main-content");
@@ -46,3 +46,34 @@ var questions = [
     answer: 0,
   },
 ];
+
+var secondsLeft;
+var message = "JavaScript Quiz Challenge!";
+var score = 0;
+
+init();
+
+function init() {
+  secondsLeft = 90;
+  messageElement.innerHTML = message;
+  //   var score = 0;
+}
+
+function startQuiz() {
+    textElement.remove();
+    startButton.remove();
+    var timerInterval = setInterval(function () {
+      secondsLeft--;
+      secsElement.textContent = secondsLeft;
+  
+      if (secondsLeft === 0) {
+        clearInterval(timerInterval);
+      }
+    }, 1000);
+
+    renderQuestions();
+}
+
+
+
+startButton.addEventListener("click", startQuiz);
