@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0 auto;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  header {
+      padding: 15px;
+  }
+  #highscores-link {
+      float: left;
+  }
+
+  #timer {
+      float: right;
+  }
+
+  h1 {
+      margin: 10px;
+  }
+
+  h4 {
+      padding: 30px;
+  }
