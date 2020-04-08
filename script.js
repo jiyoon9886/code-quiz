@@ -56,7 +56,6 @@ init();
 function init() {
   secondsLeft = 90;
   messageElement.innerHTML = message;
-  //   var score = 0;
 }
 
 function startQuiz() {
@@ -74,6 +73,46 @@ function startQuiz() {
     renderQuestions();
 }
 
-
+function renderQuestions(questionNumber) {
+    questionNumber = questionNumber || 0;
+    var questionItem = questions[questionNumber];
+    messageElement.textContent = questionItem.question;
+  
+    var newChoices = document.createElement("div");
+    answerChoicesElement.appendChild(newChoices);
+  
+    for (var j = 0; j < questionItem.choices.length; j++) {
+      var choice = questionItem.choices[j];
+  
+      var li = document.createElement("li");
+      li.setAttribute("data-index", j);
+      li.textContent = choice;
+      newChoices.appendChild(li);
+  
+      li.addEventListener("click", function (event) {
+        console.log(questionItem.answer);
+        console.log(event.target.getAttribute("data-index"));
+        if (
+          questionItem.answer ===
+          parseInt(event.target.getAttribute("data-index"))
+        ) {
+          score++;
+          console.log(score);
+          console.log("correct");
+        } else {
+          secondsLeft -= 15;
+          console.log("wrong answer");
+        }
+        questionNumber++;
+        newChoices.remove();
+  
+        if (questionNumber === questions.length) {
+          messageElement.textContent = "That's it! You got " + score + " correct.";
+        } else {
+          renderQuestions(questionNumber);
+        }
+      });
+    }
+  }
 
 startButton.addEventListener("click", startQuiz);
